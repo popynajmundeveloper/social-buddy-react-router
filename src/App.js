@@ -1,23 +1,41 @@
 
-import { useEffect, useState } from 'react';
+
 import './App.css';
-import Posts from './Posts/Posts';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  
+} from "react-router-dom";
+import Home from './Components/Home/Home';
+import NoMatch from './Components/NoMatch/NoMatch';
+import PostDetails from './PostsDetails/PostDetails';
+
+
 
 function App() {
-  const [users, setUsers] = useState([]);
-  useEffect(() =>{
-  fetch('https://jsonplaceholder.typicode.com/posts')
- .then(res=> res.json())
- .then(data=>setUsers(data));
-  },[])
+  
   return (
-    <div >
-      <h3>Posts of friend:{users.length}</h3>
+    <Router >
       
-      {users.map(user => <Posts user = {user}></Posts> )}
+      <Switch>
+      <Route path="/home">
+      <Home/>
+      </Route>
+      <Route path="/post/:postId">
+      <PostDetails></PostDetails>
+      </Route>
+
       
+      <Route exact path="/">
+      <Home/>
+      </Route>
+      <Route path="*">
+      <NoMatch/>
+      </Route>
+      </Switch>
     
-    </div>
+    </Router>
   );
 }
 

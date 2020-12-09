@@ -7,6 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import { NavLink } from 'react-router-dom/cjs/react-router-dom.min';
+
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -28,7 +31,7 @@ const useStyles = makeStyles({
 const Posts = (props) => {
   
   
-  const {title} = props.user;
+  const {title,id} = props.friend;
   //console.log(name,address);
     const classes = useStyles();
     return (
@@ -39,7 +42,7 @@ const Posts = (props) => {
          
         </Typography>
         <Typography variant="h5" component="h2">
-          {title}
+         title: {title}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           
@@ -51,12 +54,21 @@ const Posts = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">See More</Button>
+      <Button>
+      <NavLink to={`/post/${id}`}>Show Details</NavLink>
+      </Button>
       </CardActions>
     </Card>
-  
 
-        </div>
+    
+
+    
+    
+     </div>
+
+
+
+     
     );
 };
 
